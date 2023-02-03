@@ -1,0 +1,81 @@
+:root{
+    --size : 300px;
+}
+
+h1{
+    text-align: center;
+}
+body{
+    background : #A66FA6;
+}
+
+.cube{
+    margin: auto;
+    margin-top: 150px;
+    width: var(--size);
+    height: var(--size);
+    transform-style: preserve-3d;
+    /* pour mieux voir la 3D*/
+    transform: rotateY(30deg) rotateZ(30deg);
+    animation: spin 20s infinite linear;   
+}
+
+.side{
+    position: absolute;
+    opacity: 0.9;/*pour voir ce qui se passe derrière le cube*/
+    width: var(--size);
+    height: var(--size);
+}
+
+#front{
+    background: url(./asset/Link.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    /*toujours diviser par 2 la taille dans la profondeur pour faire le carré.*/
+    transform : translateZ(calc(var(--size)/2));/*la fonction calc permet de calculé dynamiquement la taille*/
+}
+
+#top{
+    background: url(./asset/Trio\ 1.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    /*c'est obligatoire pour un carré, ça reprsente 3/4 de 360°*/
+    transform: rotateX(-270deg) translateY(calc(-1 * (var(--size) /2))); /* le -1 est nécessécaire pour calculé en négatif*/
+    transform-origin: top center; /*permet de mettre la phase du cube en haut*/
+}
+#right{
+    background: url(./asset/Zelda.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    transform: rotateY(-270deg) translateX(calc(var(--size) /2));
+    transform-origin: top right;
+}
+#left{
+    background: url(./asset/Maï.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    transform: rotateY(-270deg) translateX(calc((-1 * (var(--size) /2))));
+    transform-origin: center left;
+}
+#bottom{
+    background: url(./asset/Trio\ 2.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    transform: rotateX(270deg) translateY(calc(var(--size) /2));
+    transform-origin: bottom center;
+}
+#back{
+    background: url(./asset/Silver.jpg) no-repeat;
+    object-fit: cover;
+    background-position: center;
+    /*le translate Z pour qu'il aille bien au fond*/
+    transform: rotateY(-180deg) translateZ(calc((var(--size) /2)));
+}
+@keyframes spin{
+    from {
+        transform: rotateX(0) rotateY(0) rotateZ(0);
+    }
+    to{
+        transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); 
+    }
+}
